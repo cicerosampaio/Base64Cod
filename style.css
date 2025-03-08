@@ -1,0 +1,139 @@
+/* Estilos gerais do corpo da página */
+body {
+    font-family: sans-serif; /* Define a fonte como sans-serif */
+    display: flex; /* Usa o modelo de layout flexbox */
+    flex-direction: column; /* Organiza os elementos em coluna */
+    align-items: center; /* Centraliza os elementos horizontalmente */
+    justify-content: center; /* Centraliza os elementos verticalmente */
+    min-height: 100vh; /* Define a altura mínima como 100% da altura da viewport */
+    margin: 0; /* Remove as margens padrão */
+    background-color: #f4f4f4; /* Define a cor de fundo como cinza claro */
+}
+
+/* Estilos para o container principal */
+.container {
+    background-color: #fff; /* Define a cor de fundo como branco */
+    padding: 20px; /* Adiciona um espaçamento interno de 20 pixels */
+    border-radius: 8px; /* Arredonda as bordas com 8 pixels de raio */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra suave */
+    width: 90%; /* Define a largura como 90% do contêiner pai */
+    max-width: 600px; /* Define a largura máxima como 600 pixels */
+}
+
+/* Estilos para o título h1 */
+h1 {
+    text-align: center; /* Centraliza o texto */
+    margin-bottom: 20px; /* Adiciona uma margem inferior de 20 pixels */
+}
+
+/* Estilos para os grupos de inputs */
+.input-group {
+    margin-bottom: 15px; /* Adiciona uma margem inferior de 15 pixels */
+}
+
+/* Estilos para as labels */
+label {
+    margin-right: 15px; /* Adiciona uma margem direita de 15 pixels */
+}
+
+/* Estilos para os inputs de tipo file e texto, e textarea */
+input[type="file"],
+input[type="text"],
+textarea {
+    width: calc(100% - 22px); /* Define a largura como 100% menos o padding e a borda*/
+    padding: 10px; /* Adiciona um espaçamento interno de 10 pixels */
+    margin-top: 5px; /* Adiciona uma margem superior de 5 pixels */
+    border: 1px solid #ddd; /* Define uma borda de 1 pixel sólida cinza claro */
+    border-radius: 4px; /* Arredonda as bordas com 4 pixels de raio */
+    box-sizing: border-box; /* Inclui o padding e borda na largura total*/
+}
+
+/* Estilos para o textarea */
+textarea {
+    resize: vertical; /* Permite o redimensionamento vertical do textarea */
+}
+
+/* Estilos para os botões */
+button {
+    padding: 10px 15px; /* Adiciona um espaçamento interno de 10 pixels vertical e 15 horizontal*/
+    margin-top: 10px; /* Adiciona uma margem superior de 10 pixels */
+    border: none; /* Remove a borda */
+    background-color: #007bff; /* Define a cor de fundo como azul */
+    color: white; /* Define a cor do texto como branco */
+    border-radius: 4px; /* Arredonda as bordas com 4 pixels de raio */
+    cursor: pointer; /* Define o cursor como uma mãozinha */
+}
+
+/* Estilos para os botões no hover */
+button:hover {
+    background-color: #0056b3; /* Escurece o fundo no hover */
+}
+
+/* Estilo do botão INÍCIO */
+#inicioBotao {
+    width: 80px; /* Define a largura como 80 pixels */
+    height: 80px; /* Define a altura como 80 pixels */
+    border-radius: 50%; /* Arredonda as bordas para formar um círculo */
+    border: 2px solid #00ffcc; /* Define uma borda de 2 pixels sólida na cor teal */
+    background-color: #333; /* Define a cor de fundo como cinza escuro */
+    display: flex; /* Usa flexbox para centralizar o conteúdo */
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    align-items: center; /* Centraliza o conteúdo verticalmente */
+    cursor: pointer; /* Define o cursor como uma mãozinha */
+    box-shadow: 0 0 10px rgba(0, 255, 204, 0.5); /* Adiciona uma sombra */
+    position: relative; /* Necessário para posicionar os elementos da casa */
+}
+
+/* Estilos para o telhado do botão */
+.telhado {
+    width: 0; /* Define a largura como zero */
+    height: 0; /* Define a altura como zero */
+    border-left: 20px solid transparent; /* Borda esquerda transparente */
+    border-right: 20px solid transparent; /* Borda direita transparente */
+    border-bottom: 20px solid white; /* Borda inferior branca */
+    position: absolute; /* Posiciona o elemento de forma absoluta */
+    top: 20px; /* Define a distância do topo */
+}
+
+/* Estilos para o corpo do botão */
+.corpo {
+    width: 20px; /* Define a largura como 20 pixels */
+    height: 20px; /* Define a altura como 20 pixels */
+    background-color: white; /* Define a cor de fundo como branco */
+    position: absolute; /* Posiciona o elemento de forma absoluta */
+    bottom: 20px; /* Define a distância da parte inferior */
+}
+
+/* Estilos para o botão INICIO no hover */
+#inicioBotao:hover {
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.8); /* Adiciona uma sombra maior no hover */
+}
+
+/* Responsividade */
+@media (max-width: 600px) { /* Media query para telas com largura máxima de 600 pixels */
+    .container {
+        width: 95%; /* Define a largura como 95% em telas menores */
+    }
+}
+
+/* Estilos para a barra de progresso */
+#barraProgresso {
+    position: fixed; /* Fixa a barra de progresso em relação à janela do navegador */
+    top: 50%; /* Define a posição vertical como 50% da janela */
+    left: 50%; /* Define a posição horizontal como 50% da janela */
+    transform: translate(-50%, -50%); /* Centraliza a barra, considerando suas dimensões */
+    display: none; /* Esconde a barra por padrão */
+}
+
+/* Estilos para a miniatura da imagem */
+#miniaturaImagem {
+    max-width: 15%; /* Define a largura máxima como 15% do contêiner pai */
+    max-height: 200px; /* Define a altura máxima como 200 pixels */
+    display: none; /* Esconde a miniatura por padrão */
+}
+
+/* Estilos para os inputs ocultos */
+#imagemInput,
+#urlInput {
+    display: none; /* Esconde os inputs de imagem e URL por padrão */
+}

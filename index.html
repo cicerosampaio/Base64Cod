@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!-- Declaração do tipo de documento: HTML5 -->
+<html>
+<head>
+    <!-- Seção de cabeçalho do documento -->
+    <title>Codificador Base64</title>
+    <!-- Título que aparece na aba do navegador -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Link para o arquivo CSS externo para estilização -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Configura a viewport para tornar a página responsiva -->
+    <meta charset="UTF-8">
+    <!-- Define a codificação de caracteres para UTF-8 (suporta caracteres especiais) -->
+    
+    <!-- Fim dos estilos CSS internos -->
+</head>
+<!-- Fim do cabeçalho -->
+<body>
+    <!-- Corpo do documento (conteúdo visível) -->
+    <div id="inicioBotao"></div>
+    <!-- Div criada para o botão inicio, formatado em css. A div foi criada para a formatação em css, e não tem nenhuma função no js. -->
+    <div class="container">
+        <!-- Container principal para o conteúdo -->
+        <h1>Codificador Base64</h1>
+        <!-- Título principal da página -->
+
+        <div class="input-group">
+            <!-- Grupo de inputs para escolher a fonte da imagem -->
+            <label><input type="radio" name="fonteImagem" value="arquivo" id="arquivoRadio"> Imagem</label>
+            <!-- Radio button para selecionar a opção de carregar uma imagem do computador -->
+            <label><input type="radio" name="fonteImagem" value="url" id="urlRadio"> URL</label>
+            <!-- Radio button para selecionar a opção de carregar uma imagem por meio de uma URL -->
+        </div>
+        <!-- Fim do grupo de inputs de fonte da imagem -->
+
+        <div class="input-group" id="tipoSaidaGroup" style="display: none;">
+            <!-- Grupo de inputs para escolher o tipo de saída (escondido por padrão) -->
+            <label><input type="checkbox" name="tipoSaida" value="favicon"> HTML Favicon</label>
+            <!-- Checkbox para indicar que o tipo de saída é para um favicon -->
+            <label><input type="checkbox" name="tipoSaida" value="imagem"> HTML Imagem</label>
+            <!-- Checkbox para indicar que o tipo de saída é para uma imagem comum -->
+        </div>
+        <!-- Fim do grupo de inputs de tipo de saída -->
+
+        <input type="file" id="imagemInput" style="display: none;">
+        <!-- Input para selecionar o arquivo de imagem (escondido por padrão) -->
+        <input type="text" id="urlInput" placeholder="Insira a URL da imagem" style="display: none;">
+        <!-- Input para inserir a URL da imagem (escondido por padrão) -->
+
+        <img id="miniaturaImagem" src="#" alt="Miniatura da Imagem">
+        <!-- Imagem para exibir a miniatura da imagem (inicialmente um placeholder) -->
+
+        <textarea id="base64Resultado" rows="10" cols="50"></textarea>
+        <!-- Área de texto para exibir o resultado codificado em Base64 -->
+
+        <div>
+            <!-- Container para os botões de ação -->
+            <button id="copiarBotao">Copiar</button>
+            <!-- Botão para copiar o texto codificado -->
+            <button id="baixarBotao">Baixar</button>
+            <!-- Botão para baixar o texto codificado como um arquivo -->
+        </div>
+        <!-- Fim do container dos botões -->
+
+        <progress id="barraProgresso"></progress>
+        <!-- Barra de progresso para indicar o processo de codificação -->
+    </div>
+    <!-- Fim do container principal -->
+
+    <script src="script.js"></script>
+    <!-- Link para o arquivo JavaScript externo (lógica da aplicação) -->
+    <script src="https://cdn.jsdelivr.net/npm/js-base64@3.7.5/base64.min.js"></script>
+    <!-- Link para a biblioteca js-base64 para codificação e decodificação -->
+</body>
+<!-- Fim do corpo -->
+</html>
+<!-- Fim do documento HTML -->
