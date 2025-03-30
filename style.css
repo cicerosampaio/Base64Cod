@@ -1,139 +1,646 @@
-/* Estilos gerais do corpo da página */
+/* Importa a fonte Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Define variáveis CSS para cores, fontes e transições */
+:root {
+    --cor-primaria: #3498db; /* Azul */
+    --cor-secundaria: #2ecc71; /* Verde */
+    --cor-fundo: #f8f9fa; /* Cinza bem claro */
+    --cor-container: #ffffff; /* Branco */
+    --cor-texto: #34495e; /* Cinza escuro */
+    --cor-texto-claro: #7f8c8d; /* Cinza médio */
+    --cor-borda: #dfe6e9; /* Cinza claro */
+    --cor-borda-ativa: #bdc3c7; /* Cinza para borda ativa/hover */
+    --cor-sombra: rgba(0, 0, 0, 0.1);
+    --cor-erro: #e74c3c; /* Vermelho */
+    --cor-sucesso: #27ae60; /* Verde mais escuro (sucesso) */
+    --cor-hover-botao: #2980b9; /* Azul mais escuro */
+    --cor-fundo-drop-hover: #eaf5fc; /* Azul bem claro para hover drop */
+    --cor-borda-drop-hover: var(--cor-primaria);
+
+    --fonte-principal: 'Poppins', sans-serif;
+    --fonte-code: 'Courier New', Courier, monospace; /* Fonte para resultados */
+
+    --border-radius: 8px;
+    --transition-speed: 0.3s;
+}
+
+/* Reset básico e estilos globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+     scroll-behavior: smooth; /* Rolagem suave */
+}
+
 body {
-    font-family: sans-serif; /* Define a fonte como sans-serif */
-    display: flex; /* Usa o modelo de layout flexbox */
-    flex-direction: column; /* Organiza os elementos em coluna */
-    align-items: center; /* Centraliza os elementos horizontalmente */
-    justify-content: center; /* Centraliza os elementos verticalmente */
-    min-height: 100vh; /* Define a altura mínima como 100% da altura da viewport */
-    margin: 0; /* Remove as margens padrão */
-    background-color: #f4f4f4; /* Define a cor de fundo como cinza claro */
+    font-family: var(--fonte-principal);
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    min-height: 100vh;
 }
 
-/* Estilos para o container principal */
+/* Botão Home fixo */
+#homeButton {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background-color: var(--cor-primaria);
+    color: var(--cor-container);
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 2px 5px var(--cor-sombra);
+    transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Garante que fique sobre outros elementos */
+}
+
+#homeButton:hover {
+    background-color: var(--cor-hover-botao);
+    transform: scale(1.1);
+}
+
+
+/* Estilo do container principal */
 .container {
-    background-color: #fff; /* Define a cor de fundo como branco */
-    padding: 20px; /* Adiciona um espaçamento interno de 20 pixels */
-    border-radius: 8px; /* Arredonda as bordas com 8 pixels de raio */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra suave */
-    width: 90%; /* Define a largura como 90% do contêiner pai */
-    max-width: 600px; /* Define a largura máxima como 600 pixels */
+    background-color: var(--cor-container);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 15px var(--cor-sombra);
+    width: 100%;
+    max-width: 700px;
+    margin-top: 60px; /* Espaço para o botão Home */
+    border: 1px solid var(--cor-borda);
 }
 
-/* Estilos para o título h1 */
+/* Título principal */
 h1 {
-    text-align: center; /* Centraliza o texto */
-    margin-bottom: 20px; /* Adiciona uma margem inferior de 20 pixels */
+    text-align: center;
+    color: var(--cor-primaria);
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 1.8rem; /* Um pouco maior */
 }
 
-/* Estilos para os grupos de inputs */
+h1 i {
+    margin-right: 10px;
+}
+
+/* Estilo das seções */
+.section {
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid var(--cor-borda);
+}
+
+.section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.section h2 {
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: var(--cor-texto);
+    font-size: 1.2rem; /* Um pouco maior */
+    border-left: 4px solid var(--cor-secundaria);
+    padding-left: 10px;
+}
+
+h2 i {
+    margin-right: 8px;
+    color: var(--cor-secundaria);
+    width: 1.1em; /* Garante alinhamento */
+    text-align: center;
+}
+
+/* Grupos de Inputs e Labels */
 .input-group {
-    margin-bottom: 15px; /* Adiciona uma margem inferior de 15 pixels */
+    margin-bottom: 15px;
 }
 
-/* Estilos para as labels */
-label {
-    margin-right: 15px; /* Adiciona uma margem direita de 15 pixels */
+.input-group:last-child {
+    margin-bottom: 0;
 }
 
-/* Estilos para os inputs de tipo file e texto, e textarea */
-input[type="file"],
+label, .format-label { /* Aplica estilo ao span também */
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 400; /* Normal weight */
+    color: var(--cor-texto);
+    cursor: default; /* Cursor padrão para labels gerais */
+}
+.format-label i { /* Ícone do span */
+     margin-right: 5px;
+     color: var(--cor-primaria);
+}
+
+
+label i { /* Ícone dentro do label */
+    margin-right: 5px;
+    color: var(--cor-primaria);
+    width: 1em;
+    text-align: center;
+}
+
+/* Inputs de Texto, URL, Select e Textarea */
 input[type="text"],
+select,
 textarea {
-    width: calc(100% - 22px); /* Define a largura como 100% menos o padding e a borda*/
-    padding: 10px; /* Adiciona um espaçamento interno de 10 pixels */
-    margin-top: 5px; /* Adiciona uma margem superior de 5 pixels */
-    border: 1px solid #ddd; /* Define uma borda de 1 pixel sólida cinza claro */
-    border-radius: 4px; /* Arredonda as bordas com 4 pixels de raio */
-    box-sizing: border-box; /* Inclui o padding e borda na largura total*/
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--cor-borda);
+    border-radius: calc(var(--border-radius) / 2);
+    font-family: var(--fonte-principal);
+    font-size: 0.95rem;
+    color: var(--cor-texto);
+    background-color: var(--cor-container); /* Fundo branco padrão */
+    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
 }
 
-/* Estilos para o textarea */
-textarea {
-    resize: vertical; /* Permite o redimensionamento vertical do textarea */
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2); /* Sombra suave no foco */
 }
 
-/* Estilos para os botões */
+/* Remove setas de incremento/decremento (opcional) */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none; /* Para Chrome, Safari, Edge */
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield; /* Para Firefox */
+  appearance: textfield;       /* Padrão (para navegadores modernos e compatibilidade) */
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+textarea#outputResult {
+    background-color: #ecf0f1; /* Fundo levemente diferente para o resultado */
+    font-family: var(--fonte-code); /* Fonte monoespaçada */
+    font-size: 0.9rem;
+    color: #2c3e50; /* Cor um pouco mais escura para código */
+    /* white-space: pre; */ /* Considerar se quer preservar espaços */
+    /* word-wrap: break-word; */ /* Quebra palavras longas */
+}
+
+/* Estilos específicos para Radio Buttons */
+.radio-group {
+     display: flex;
+     flex-wrap: wrap; /* Quebra linha se necessário */
+     gap: 10px 20px; /* Espaçamento vertical e horizontal */
+     align-items: center;
+}
+.radio-group label {
+    display: inline-flex; /* Alinha label e input na mesma linha */
+    align-items: center;
+    margin-bottom: 0; /* Remove margem inferior pois o gap cuida */
+    margin-right: 0; /* Remove margem direita */
+    cursor: pointer; /* Cursor de mãozinha no label do radio */
+    font-weight: 400; /* Peso normal */
+}
+.radio-group span.format-label {
+     margin-bottom: 0; /* Remove margem do span */
+     margin-right: 10px; /* Espaço antes das opções */
+     cursor: default;
+}
+
+
+.radio-group input[type="radio"] {
+    margin-right: 8px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--cor-borda-ativa); /* Cinza mais escuro para borda */
+    border-radius: 50%;
+    position: relative;
+    top: -1px;
+    transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+}
+
+.radio-group input[type="radio"]:hover {
+     border-color: var(--cor-primaria);
+}
+
+.radio-group input[type="radio"]:checked {
+    background-color: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+}
+
+/* Círculo interno para indicar seleção */
+.radio-group input[type="radio"]:checked::after {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    background-color: var(--cor-container);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Grupo de Botões */
+.button-group {
+    display: flex;
+    gap: 10px; /* Espaçamento entre botões */
+    flex-wrap: wrap;
+    margin-top: 15px; /* Espaço acima do grupo */
+}
+
 button {
-    padding: 10px 15px; /* Adiciona um espaçamento interno de 10 pixels vertical e 15 horizontal*/
-    margin-top: 10px; /* Adiciona uma margem superior de 10 pixels */
-    border: none; /* Remove a borda */
-    background-color: #007bff; /* Define a cor de fundo como azul */
-    color: white; /* Define a cor do texto como branco */
-    border-radius: 4px; /* Arredonda as bordas com 4 pixels de raio */
-    cursor: pointer; /* Define o cursor como uma mãozinha */
+    padding: 10px 20px;
+    border: none;
+    border-radius: calc(var(--border-radius) / 2);
+    background-color: var(--cor-primaria);
+    color: var(--cor-container);
+    font-family: var(--fonte-principal);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center; /* Centraliza conteúdo no botão */
+    gap: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-/* Estilos para os botões no hover */
 button:hover {
-    background-color: #0056b3; /* Escurece o fundo no hover */
+    background-color: var(--cor-hover-botao);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
 }
 
-/* Estilo do botão INÍCIO */
-#inicioBotao {
-    width: 80px; /* Define a largura como 80 pixels */
-    height: 80px; /* Define a altura como 80 pixels */
-    border-radius: 50%; /* Arredonda as bordas para formar um círculo */
-    border: 2px solid #00ffcc; /* Define uma borda de 2 pixels sólida na cor teal */
-    background-color: #333; /* Define a cor de fundo como cinza escuro */
-    display: flex; /* Usa flexbox para centralizar o conteúdo */
-    justify-content: center; /* Centraliza o conteúdo horizontalmente */
-    align-items: center; /* Centraliza o conteúdo verticalmente */
-    cursor: pointer; /* Define o cursor como uma mãozinha */
-    box-shadow: 0 0 10px rgba(0, 255, 204, 0.5); /* Adiciona uma sombra */
-    position: relative; /* Necessário para posicionar os elementos da casa */
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+button:disabled {
+     background-color: var(--cor-texto-claro);
+     cursor: not-allowed;
+     transform: none;
+     box-shadow: none;
+     opacity: 0.7;
 }
 
-/* Estilos para o telhado do botão */
-.telhado {
-    width: 0; /* Define a largura como zero */
-    height: 0; /* Define a altura como zero */
-    border-left: 20px solid transparent; /* Borda esquerda transparente */
-    border-right: 20px solid transparent; /* Borda direita transparente */
-    border-bottom: 20px solid white; /* Borda inferior branca */
-    position: absolute; /* Posiciona o elemento de forma absoluta */
-    top: 20px; /* Define a distância do topo */
+
+/* Estilos específicos para botões */
+#decodeButton { background-color: var(--cor-secundaria); }
+#decodeButton:hover:not(:disabled) { background-color: #27ae60; } /* Hover só se não desabilitado */
+
+#clearButton, #clearHistoryButton { background-color: var(--cor-texto-claro); }
+#clearButton:hover, #clearHistoryButton:hover { background-color: #95a5a6; }
+
+#shareButton, #toggleHistoryButton { background-color: #9b59b6; } /* Roxo */
+#shareButton:hover, #toggleHistoryButton:hover { background-color: #8e44ad; }
+
+/* Preview de Imagem da URL (fora da drop zone) */
+.image-preview-outside {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    max-height: 150px;
+    margin-top: 15px;
+    border-radius: calc(var(--border-radius) / 2);
+    border: 1px solid var(--cor-borda);
+    object-fit: contain;
+    background-color: var(--cor-fundo); /* Fundo claro para preview */
 }
 
-/* Estilos para o corpo do botão */
-.corpo {
-    width: 20px; /* Define a largura como 20 pixels */
-    height: 20px; /* Define a altura como 20 pixels */
-    background-color: white; /* Define a cor de fundo como branco */
-    position: absolute; /* Posiciona o elemento de forma absoluta */
-    bottom: 20px; /* Define a distância da parte inferior */
+
+/* --- Estilos da Drop Zone --- */
+.drop-zone {
+    width: 100%;
+    min-height: 150px; /* Altura mínima */
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: var(--fonte-principal);
+    font-weight: 400; /* Peso normal para texto */
+    font-size: 1rem;
+    cursor: pointer;
+    color: var(--cor-texto-claro);
+    border: 3px dashed var(--cor-borda-ativa); /* Borda tracejada cinza */
+    border-radius: var(--border-radius);
+    background-color: var(--cor-fundo);
+    transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+    position: relative; /* Para posicionar o input oculto e o preview */
+    margin-top: 10px;
+    overflow: hidden; /* Garante que o preview não vaze */
 }
 
-/* Estilos para o botão INICIO no hover */
-#inicioBotao:hover {
-    box-shadow: 0 0 15px rgba(0, 255, 204, 0.8); /* Adiciona uma sombra maior no hover */
+/* Input de arquivo oculto mas acessível */
+.drop-zone__input {
+    display: none;
+}
+
+/* Ícone dentro da drop zone */
+.drop-zone__icon {
+    font-size: 3rem;
+    color: var(--cor-primaria);
+    margin-bottom: 15px;
+     transition: color var(--transition-speed) ease;
+}
+
+/* Texto dentro da drop zone */
+.drop-zone__prompt p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Estilo para a parte "clique para selecionar" */
+.drop-zone__prompt span {
+    color: var(--cor-primaria);
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+/* Estado quando um arquivo está sendo arrastado sobre a zona */
+.drop-zone--over {
+    border-color: var(--cor-borda-drop-hover); /* Muda cor da borda */
+    background-color: var(--cor-fundo-drop-hover); /* Fundo azul claro suave */
+}
+.drop-zone--over .drop-zone__icon {
+     color: var(--cor-borda-drop-hover);
+}
+.drop-zone--over .drop-zone__prompt span {
+     color: var(--cor-borda-drop-hover);
+}
+
+
+/* Preview da imagem dentro da Drop Zone */
+.drop-zone__preview {
+    width: 100%; /* Ocupa a largura da drop zone */
+    height: 100%; /* Ocupa a altura disponível */
+    /* Removido max-height para preencher a div */
+    object-fit: contain;
+    border-radius: calc(var(--border-radius) / 2);
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--cor-container);
+    padding: 5px;
+    /* Adiciona transição para aparecer suavemente */
+    opacity: 1;
+    transition: opacity var(--transition-speed) ease;
+}
+/* Esconde o preview quando a classe hidden está presente */
+.drop-zone__preview.hidden {
+     opacity: 0;
+     pointer-events: none; /* Impede interação quando oculto */
+}
+
+/* Esconde o prompt quando o preview NÃO tem a classe hidden */
+.drop-zone:has(.drop-zone__preview:not(.hidden)) .drop-zone__prompt {
+     display: none;
+}
+
+
+/* Mensagens de Status/Erro */
+.status-message {
+    margin-top: 15px;
+    padding: 10px 15px;
+    border-radius: calc(var(--border-radius) / 2);
+    font-size: 0.9rem;
+    border: 1px solid transparent;
+    display: none; /* Oculto por padrão */
+    text-align: center;
+}
+.status-message.success {
+    background-color: #eafaf1; /* Fundo verde bem claro */
+    color: var(--cor-sucesso);
+    border-color: #abebc6; /* Borda verde clara */
+    display: block;
+}
+.status-message.error {
+    background-color: #fdedec;
+    color: var(--cor-erro);
+    border-color: #fadbda;
+    display: block;
+}
+
+/* Seção de Histórico */
+.history-section .history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 10px; /* Espaço entre título e botões */
+}
+.history-section .history-header h2 {
+    margin-bottom: 0;
+    border-left: none;
+    padding-left: 0;
+    flex-grow: 1; /* Título ocupa espaço disponível */
+}
+/* Agrupamento dos botões do histórico */
+.history-section .history-header div {
+     display: flex;
+     gap: 5px;
+}
+
+
+#historyList {
+    list-style: none;
+    max-height: 200px; /* Altura máxima para scroll */
+    overflow-y: auto; /* Adiciona scroll vertical se necessário */
+    border: 1px solid var(--cor-borda);
+    border-radius: calc(var(--border-radius) / 2);
+    padding: 5px 0; /* Padding vertical, sem horizontal */
+    background-color: var(--cor-fundo);
+    transition: max-height var(--transition-speed) ease, opacity var(--transition-speed) ease, padding var(--transition-speed) ease, border var(--transition-speed) ease;
+}
+
+#historyList.hidden {
+    max-height: 0;
+    opacity: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-color: transparent;
+    overflow: hidden;
+    margin-top: 0; /* Remove margem quando oculto */
+}
+
+#historyList li {
+    padding: 8px 10px; /* Padding interno dos itens */
+    border-bottom: 1px dashed var(--cor-borda);
+    font-size: 0.85rem;
+    color: var(--cor-texto-claro);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+#historyList li:last-child {
+    border-bottom: none;
+}
+
+#historyList li span {
+    flex-grow: 1;
+    word-break: break-word;
+}
+#historyList li span strong {
+    color: var(--cor-texto);
+    margin-right: 5px;
+}
+#historyList li span i {
+     font-size: 0.8rem; /* Timestamp menor */
+     margin-left: 5px;
+}
+
+#historyList li .history-actions {
+     display: flex;
+     gap: 5px;
+     flex-shrink: 0; /* Impede que os botões encolham */
+}
+#historyList li .history-actions button {
+    padding: 3px 8px; /* Mais padding horizontal */
+    font-size: 0.75rem;
+    margin-left: 0; /* Remove margem esquerda */
+    background-color: transparent;
+    color: var(--cor-primaria);
+    border: 1px solid var(--cor-primaria);
+    border-radius: 4px;
+    box-shadow: none;
+    line-height: 1; /* Ajusta altura da linha */
+}
+#historyList li .history-actions button:hover {
+    background-color: var(--cor-primaria);
+    color: var(--cor-container);
+    transform: none;
+    box-shadow: none;
+}
+
+#historyList .no-history {
+    text-align: center;
+    color: var(--cor-texto-claro);
+    font-style: italic;
+    border-bottom: none;
+    padding: 15px; /* Mais espaço quando vazio */
+}
+
+/* Classes Utilitárias */
+.hidden {
+    display: none !important; /* Garante que o !important sobrescreva outros displays */
+}
+
+/* Footer */
+footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--cor-borda);
+    width: 100%;
+    max-width: 700px; /* Mesma largura do container */
+    text-align: center;
+    color: var(--cor-texto-claro);
+    font-size: 0.9rem;
 }
 
 /* Responsividade */
-@media (max-width: 600px) { /* Media query para telas com largura máxima de 600 pixels */
+@media (max-width: 768px) {
     .container {
-        width: 95%; /* Define a largura como 95% em telas menores */
+        padding: 20px;
+        margin-top: 70px;
     }
+
+    h1 { font-size: 1.6rem; }
+    .section h2 { font-size: 1.1rem; }
+
+    .button-group {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    button {
+        width: 100%;
+    }
+    /* Exceto botões do histórico */
+     #historyList li .history-actions button {
+          width: auto;
+     }
+      .history-section .history-header div button {
+           width: auto;
+           padding: 5px 10px; /* Ajusta padding */
+      }
+
+
+    .radio-group {
+         gap: 8px 15px; /* Menos espaço */
+    }
+     .radio-group label { font-size: 0.9rem; }
+
+    #homeButton {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+     footer { max-width: 95%; }
 }
 
-/* Estilos para a barra de progresso */
-#barraProgresso {
-    position: fixed; /* Fixa a barra de progresso em relação à janela do navegador */
-    top: 50%; /* Define a posição vertical como 50% da janela */
-    left: 50%; /* Define a posição horizontal como 50% da janela */
-    transform: translate(-50%, -50%); /* Centraliza a barra, considerando suas dimensões */
-    display: none; /* Esconde a barra por padrão */
-}
+@media (max-width: 480px) {
+    body { padding: 10px; }
+    .container { padding: 15px; margin-top: 65px;}
+    h1 { font-size: 1.4rem; }
+    .section h2 { font-size: 1rem; }
+    label, .format-label { font-size: 0.95rem; }
 
-/* Estilos para a miniatura da imagem */
-#miniaturaImagem {
-    max-width: 15%; /* Define a largura máxima como 15% do contêiner pai */
-    max-height: 200px; /* Define a altura máxima como 200 pixels */
-    display: none; /* Esconde a miniatura por padrão */
-}
+    .radio-group {
+         flex-direction: column; /* Empilha radios */
+         align-items: flex-start;
+         gap: 10px;
+    }
+     .radio-group label { width: 100%; } /* Ocupa largura */
 
-/* Estilos para os inputs ocultos */
-#imagemInput,
-#urlInput {
-    display: none; /* Esconde os inputs de imagem e URL por padrão */
+     .history-section .history-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .history-section .history-header div {
+         width: 100%;
+         justify-content: flex-end; /* Alinha botões à direita */
+    }
+     #historyList li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+     #historyList li .history-actions {
+        margin-top: 5px;
+        width: 100%;
+        justify-content: flex-end; /* Alinha botões à direita */
+    }
+     .drop-zone { min-height: 120px; padding: 15px; font-size: 0.9rem; }
+     .drop-zone__icon { font-size: 2.5rem; margin-bottom: 10px;}
+     footer { font-size: 0.85rem; }
 }
